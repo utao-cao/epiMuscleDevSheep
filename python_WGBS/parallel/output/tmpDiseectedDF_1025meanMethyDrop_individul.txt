@@ -1,0 +1,1 @@
+	geneId	group	sample	cateRange	typeMethy	median	mean	std
