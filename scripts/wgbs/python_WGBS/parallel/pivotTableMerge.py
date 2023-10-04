@@ -1,3 +1,6 @@
+'''
+Authour: utao.cao
+'''
 #!/usr/bin/env python 
 # coding: utf-8
 import numpy as np
@@ -10,7 +13,8 @@ from functools import reduce
 from createDir import create_dir
 from pivotSummary_parallelVersion import reduceCategory,reduceDFmeno,mem_usg
 
-pd.set_option('precision', 4)
+pd.options.display.precision=4
+
 def get_parser():
     parser = argparse.ArgumentParser(description="若指定的文件夹不存在，则创建")
     parser.add_argument('df_path', metavar='DF_PATH', nargs = 1, type = str, help='指定文件路径')
@@ -36,10 +40,11 @@ def readTableList(df_paths):
     return df_list
 
 def main():
-    pattern = r"tmp[a-zA-Z]*_[0-9]*meanMethydescribe.txt$"  # _individul
+    pattern = r"tmp[a-zA-Z]*_[0-9]*meanMethydescribe_individul.txt$"  # or delete _individul
     args = vars(get_parser().parse_args())  # 返回对象的属性-属性值的字典对象  return a key-value dict
     df_path = args['df_path'][0]
     out_name = args['out_name'][0]
+    print(find_byPattern(df_path,pattern))
     df_list = readTableList(find_byPattern(df_path,pattern))
     mergeDF = pd.concat(df_list)
     mergeDF.loc[mergeDF.duplicated(subset=['geneId','group','cateRange','typeMethy'], keep=False)].to_csv("{}Duplicatedmerge.txt".format(out_name),sep='\t')

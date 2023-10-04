@@ -1,0 +1,40 @@
+Package: BSgenome.oviAri4.NCBI.sheep
+Title: Full genome sequences for Ovis aries  sheep (Ovis_aries_4.0)
+Description: The oviAri4 assembly was submitted by International Sheep Genome Consortium on November 2015. The assembly is on chromosome level.(Breed: Texel)
+Version: 1.0.0
+organism: Ovis aries
+common_name: Sheep
+provider: NCBI
+provider_version: oviAri4 
+release_date: Nov. 2015
+release_name: Chinese Agricultral University
+source_url: https://www.ncbi.nlm.nih.gov/assembly/GCF_000298735.2/#/def
+organism_biocview: Ovis_aries
+BSgenomeObjname: Oaries
+seqnames: paste("chr", c(1:26, "X"), sep="")
+#seqfile_name: genome$chr1
+# same as genome[["GCA_011170295"]]
+	.
+	## ---------------------------------------------------------------------
+	## Upstream sequences
+	## ---------------------------------------------------------------------
+	## Starting with BioC 3.0, the upstream1000, upstream2000, and
+	## upstream5000 sequences for rn4 are not included in the BSgenome data
+	## package anymore. However they can easily be extracted from the full
+	## genome sequences with something like:
+	##.
+  ##	library(AnnotationDbi)
+  ##	library(GenomicFeatures)
+  ##	txdb <- makeTxDbFromGFF('D:\\PracticeResource\\Reference\\Husheep.gff3.gz')
+  ##	gn <- sort(genes(txdb))
+  ##	up1000 <- flank(gn, width=1000)
+  ##	up1000seqs <- getSeq(genome, up1000)
+	##.
+	## IMPORTANT: Make sure you use a TxDb package (or TxDb object),
+	## that contains a gene model based on the exact same reference genome
+	## as the BSgenome object you pass to getSeq(). Note that you can make
+	## your own custom TxDb object from various annotation resources.
+	## See the makeTxDbFromUCSC(), makeTxDbFromBiomart(),
+	## and makeTxDbFromGFF() functions in the GenomicFeatures
+	## package.
+seqs_srcdir: D:/PracticeResource/Reference/sheep/Oar4.0_NCBI_2015/seqfa

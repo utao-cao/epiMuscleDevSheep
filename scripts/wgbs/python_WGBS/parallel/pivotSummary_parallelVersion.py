@@ -9,7 +9,7 @@ import re
 import argparse
 from createDir import create_dir
 
-pd.set_option('precision', 4)
+# pd.set_option('precision', 4)
 
 '''
 we aim to calculate mean methylation of different methlyType for each gene, which looks like:
@@ -210,8 +210,8 @@ def main():
         print(e)
     else:
         #export summary table
-        #pmdAnno_grouped['meanMethy'].describe().to_csv(os.path.join(out_dir,"{}meanMethydescribe_individul.txt".format(df_path)),sep='\t',index=True)
-        #meanMethyDF[~meanMethyDF.isna().any(axis=1)].reset_index().to_csv(os.path.join(out_dir,"{}meanMethyDrop_individul.txt".format(df_path)),sep='\t',index=True)
+        pmdAnno_grouped['meanMethy'].describe().to_csv(os.path.join(out_dir,"{}meanMethydescribe_individul.txt".format(df_path)),sep='\t',index=True)
+        meanMethyDF[~meanMethyDF.isna().any(axis=1)].reset_index().to_csv(os.path.join(out_dir,"{}meanMethyDrop_individul.txt".format(df_path)),sep='\t',index=True)
         print(mem_usg(pmdAnnoStatSimp))
 
     # basic 没必要
